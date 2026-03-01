@@ -11,36 +11,31 @@
 
 <body>
     <div id="presentation-container">
-        <!-- Slide 1: Portada -->
-        <div id="slide-1" class="slide active" style="position: relative; overflow: hidden; padding: 0;">
+        <div id="slide-1" class="slide active"
+            style="position: relative; overflow: hidden; padding: 0; display: flex !important; align-items: center; width: 100%; height: 100%;">
             <!-- Fondo glow sutil -->
             <div
-                style="position: absolute; top: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,168,255,0.18), transparent 70%); pointer-events: none;">
-            </div>
-            <div
-                style="position: absolute; bottom: -80px; right: 30%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(46,204,113,0.1), transparent 70%); pointer-events: none;">
+                style="position: absolute; top: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,168,255,0.18), transparent 70%); pointer-events: none; z-index: 1;">
             </div>
 
-            <!-- Columna izquierda: Texto -->
-            <div
-                style="flex: 1.1; display: flex; flex-direction: column; justify-content: center; padding: 40px 40px 40px 50px; z-index: 2;">
-                <h1 style="margin: 0; padding: 0; line-height: 1.1;">
-                    <span
-                        style="font-size: 3.5rem; font-weight: 900; color: #ffffff; display: block; filter: drop-shadow(0 0 15px rgba(0,168,255,0.5));">SARAMPIÓN</span>
-                    <span
-                        style="font-size: 1.8rem; font-weight: 700; color: var(--primary); display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px;">Clínica
-                        y Vacunación</span>
-                </h1>
-            </div>
-
-            <!-- Columna derecha: Imagen -->
-            <div
-                style="flex: 1; display: flex; align-items: center; justify-content: center; position: relative; height: 100%;">
-                <div
-                    style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0,168,255,0.12) 0%, transparent 70%);">
+            <!-- Contenido Principal -->
+            <div style="display: flex; width: 100%; height: 100%; align-items: center; z-index: 2; position: relative;">
+                <!-- Columna izquierda: Texto -->
+                <div style="flex: 1; padding: 80px; display: flex; flex-direction: column; justify-content: center;">
+                    <h1 style="margin: 0; padding: 0; line-height: 1.05; font-family: 'Outfit', sans-serif;">
+                        <span
+                            style="font-size: 4.5rem; font-weight: 900; color: #ffffff; display: block; text-shadow: 0 0 20px rgba(0,168,255,0.6);">SARAMPIÓN</span>
+                        <span
+                            style="font-size: 2.22rem; font-weight: 700; color: var(--primary); display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 2px;">Clínica
+                            y Vacunación</span>
+                    </h1>
                 </div>
-                <img src="images/measles_virus_cover.png" alt="Virus del Sarampión — Morbillivirus"
-                    style="width: 92%; max-height: 85%; object-fit: contain; border-radius: 20px; filter: drop-shadow(0 0 40px rgba(0,168,255,0.4)) drop-shadow(0 0 80px rgba(0,168,255,0.15)); position: relative; z-index: 2;">
+
+                <!-- Columna derecha: Imagen -->
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding-right: 40px;">
+                    <img src="images/measles_virus_cover.png" alt="Virus del Sarampión"
+                        style="width: 85%; max-height: 80%; object-fit: contain; filter: drop-shadow(0 0 30px rgba(0,168,255,0.5));">
+                </div>
             </div>
         </div>
 
