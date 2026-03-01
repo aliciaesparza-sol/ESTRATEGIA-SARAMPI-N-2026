@@ -1,0 +1,17 @@
+{
+  "name": "Capacitación Sarampión 2026",
+  "short_name": "Sarampión 26",
+  "description": "Presentación interactiva sobre Clínica y Vacunación de Sarampión para la Secretaría de Salud de Durango. Diseñada para uso sin conexión.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050f1e",
+  "theme_color": "#00d2ff",
+  "icons": [
+    {
+      "src": "images/measles_virus_cover.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
