@@ -1,56 +1,99 @@
+/* ============================================================
+   TEMA CLARO GLASSMORPHISM — Estrategia Sarampión 2026
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
 :root {
-    --primary: #00d2ff;
-    --accent: #00b894;
-    --danger: #ff4757;
-    --warning: #ffa502;
-    --bg-dark: #0d1b2a;
-    --bg-card: rgba(255, 255, 255, 0.07);
-    --border: rgba(0, 210, 255, 0.2);
-    --text: #e8f4f8;
-    --text-muted: #94a3b8;
-    --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    /* Colores de acento */
+    --primary:      #0ea5e9;   /* sky-500 */
+    --primary-dark: #0369a1;   /* sky-700 */
+    --accent:       #10b981;   /* emerald-500 */
+    --danger:       #ef4444;   /* red-500 */
+    --danger-light: #fca5a5;
+    --warning:      #f59e0b;   /* amber-500 */
+    --warning-light:#fde68a;
+    --purple:       #8b5cf6;
+
+    /* Superficie */
+    --bg-body:   linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 40%, #fdf4ff 100%);
+    --glass:     rgba(255, 255, 255, 0.62);
+    --glass-hover: rgba(255, 255, 255, 0.82);
+    --border:    rgba(14, 165, 233, 0.20);
+    --border-soft: rgba(255, 255, 255, 0.70);
+
+    /* Texto */
+    --text:       #0f172a;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+
+    /* Sombras */
+    --shadow:    0 20px 60px rgba(14, 165, 233, 0.12), 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-sm: 0 4px 16px rgba(14, 165, 233, 0.10);
+    --shadow-card: 0 8px 32px rgba(14, 165, 233, 0.10), inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
-* {
+/* ── Reset ───────────────────────────────────────────── */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ── Body ────────────────────────────────────────────── */
 body {
     font-family: 'Outfit', 'Inter', sans-serif;
-    background: var(--bg-dark);
+    background: var(--bg-body);
     color: var(--text);
     height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-body::before {
+/* Orbs decorativos de fondo */
+body::before,
+body::after {
     content: '';
     position: fixed;
-    inset: 0;
-    background: rgba(13, 27, 42, 0.85);
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
     z-index: 0;
 }
+body::before {
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(14,165,233,0.18), transparent 70%);
+}
+body::after {
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    right: -150px;
+    background: radial-gradient(circle, rgba(16,185,129,0.15), transparent 70%);
+}
 
+/* ── Presentation Container ──────────────────────────── */
 #presentation-container {
     position: relative;
     z-index: 1;
     width: 92vw;
     height: 88vh;
-    background: rgba(13, 27, 42, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    background: var(--glass);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
     overflow: hidden;
 }
 
-/* Top accent line */
+/* Línea superior de color */
 #presentation-container::before {
     content: '';
     position: absolute;
@@ -58,10 +101,11 @@ body::before {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(to right, var(--primary), var(--accent));
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--purple));
     z-index: 10;
 }
 
+/* ── Slides ──────────────────────────────────────────── */
 .slide {
     position: absolute;
     top: 50%;
@@ -78,9 +122,7 @@ body::before {
     gap: 12px;
 }
 
-.slide.active {
-    display: flex;
-}
+.slide.active { display: flex; }
 
 #slide-1.active {
     display: flex;
@@ -93,43 +135,26 @@ body::before {
     transform: none;
 }
 
-.slide.active>* {
+/* Animación de entrada */
+.slide.active > * {
     opacity: 0;
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeInUp 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-
-.slide.active>*:nth-child(1) {
-    animation-delay: 0.1s;
-}
-
-.slide.active>*:nth-child(2) {
-    animation-delay: 0.3s;
-}
-
-.slide.active>*:nth-child(3) {
-    animation-delay: 0.5s;
-}
-
-.slide.active>*:nth-child(4) {
-    animation-delay: 0.7s;
-}
+.slide.active > *:nth-child(1) { animation-delay: 0.08s; }
+.slide.active > *:nth-child(2) { animation-delay: 0.22s; }
+.slide.active > *:nth-child(3) { animation-delay: 0.36s; }
+.slide.active > *:nth-child(4) { animation-delay: 0.50s; }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Tipografía ──────────────────────────────────────── */
 h1 {
     font-size: 4rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -137,9 +162,9 @@ h1 {
 }
 
 h2 {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--primary-dark);
     margin-bottom: 18px;
     position: relative;
     padding-bottom: 12px;
@@ -154,59 +179,58 @@ h2::after {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(to right, var(--primary), var(--accent));
+    background: linear-gradient(90deg, var(--primary), var(--accent));
     border-radius: 2px;
 }
 
 h3 {
-    font-size: 1.15rem;
-    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-dark);
     margin-bottom: 8px;
 }
 
-p,
-li {
-    font-size: 0.95rem;
-    line-height: 1.6;
+p, li {
+    font-size: 1rem;
+    line-height: 1.65;
     color: var(--text);
 }
 
-p,
-li {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--text);
+strong {
+    font-weight: 700;
+    color: var(--primary-dark);
 }
 
-/* Info Grid */
+/* ── Info Grid ───────────────────────────────────────── */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 18px;
+    gap: 16px;
     width: 100%;
 }
 
+/* ── Info Card (Glassmorphism) ───────────────────────── */
 .info-card {
-    background: rgba(13, 27, 50, 0.92);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+    padding: 18px 22px;
     text-align: left;
     border-top: 4px solid var(--accent);
-    transition: all 0.35s;
-    backdrop-filter: blur(10px);
+    transition: all 0.30s ease;
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    box-shadow: var(--shadow-card);
 }
 
 .info-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--primary);
-    box-shadow: 0 15px 30px rgba(0, 210, 255, 0.15);
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.90);
+    box-shadow: 0 16px 40px rgba(14, 165, 233, 0.18);
 }
 
-/* Slide with bg image */
-.slide-with-bg {
-    position: relative;
-}
+/* ── Slide con imagen de fondo ───────────────────────── */
+.slide-with-bg { position: relative; }
 
 .slide-bg-img {
     position: absolute;
@@ -214,37 +238,29 @@ li {
     background-size: cover;
     background-position: center;
     border-radius: 16px;
-    opacity: 0.10;
+    opacity: 0.07;
     z-index: 0;
-    filter: grayscale(40%);
+    filter: grayscale(20%);
 }
 
-.slide-with-bg>*:not(.slide-bg-img) {
+.slide-with-bg > *:not(.slide-bg-img) {
     position: relative;
     z-index: 1;
 }
 
-/* On image slides, cards get solid dark background */
 .slide-with-bg .info-card {
-    background: rgba(10, 20, 35, 0.96) !important;
-    backdrop-filter: none;
-    border-color: rgba(0, 210, 255, 0.25) !important;
-}
-
-.slide-with-bg .info-card p,
-.slide-with-bg .info-card li {
-    text-shadow: none;
+    background: rgba(255, 255, 255, 0.90) !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 .slide-with-bg h2 {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-    background: rgba(10, 20, 35, 0.5);
+    background: rgba(255, 255, 255, 0.70);
     padding: 4px 20px;
     border-radius: 8px;
     display: inline-block;
 }
 
-/* Agenda */
+/* ── Agenda ──────────────────────────────────────────── */
 .agenda-list {
     list-style: none;
     text-align: left;
@@ -253,25 +269,29 @@ li {
 }
 
 .agenda-item {
-    font-size: 1.3rem;
-    padding: 16px 22px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 15px 22px;
     margin-bottom: 10px;
-    background: var(--bg-card);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 14px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.30s;
     border-left: 5px solid var(--accent);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow-sm);
+    color: var(--text);
 }
 
 .agenda-item:hover {
     transform: translateX(12px);
-    background: rgba(0, 210, 255, 0.12);
+    background: rgba(255, 255, 255, 0.92);
     border-left-color: var(--primary);
-    color: var(--primary);
+    color: var(--primary-dark);
+    box-shadow: 0 6px 24px rgba(14, 165, 233, 0.20);
 }
 
-/* Big Number */
+/* ── Big Number ──────────────────────────────────────── */
 .big-number {
     font-size: 3.5rem;
     font-weight: 800;
@@ -280,82 +300,88 @@ li {
     margin-top: 10px;
 }
 
-/* Table */
+/* ── Table ───────────────────────────────────────────── */
 .diff-table-container {
     width: 100%;
-    border-radius: 16px;
+    border-radius: 18px;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 1.5px solid rgba(14, 165, 233, 0.20);
+    box-shadow: var(--shadow-card);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
 }
 
 th {
-    background: rgba(0, 210, 255, 0.15);
-    color: var(--primary);
-    padding: 14px 18px;
+    background: rgba(14, 165, 233, 0.10);
+    color: var(--primary-dark);
+    padding: 13px 16px;
     text-align: left;
-    font-size: 1rem;
-    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-bottom: 1.5px solid rgba(14, 165, 233, 0.20);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 td {
-    padding: 14px 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 0.95rem;
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.08);
+    font-size: 0.88rem;
+    color: var(--text);
+    background: transparent;
 }
 
-tr:last-child td {
-    border-bottom: none;
-}
+tr:last-child td { border-bottom: none; }
 
 tr:hover td {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(14, 165, 233, 0.05) !important;
 }
 
-/* Callout / Quote */
+/* ── Callout / Quote ─────────────────────────────────── */
 .callout {
-    background: rgba(0, 184, 148, 0.1);
+    background: rgba(16, 185, 129, 0.10);
     border-left: 4px solid var(--accent);
-    padding: 18px 22px;
-    border-radius: 10px;
-    margin: 20px 0;
+    padding: 16px 22px;
+    border-radius: 12px;
+    margin: 16px 0;
     font-style: italic;
     color: var(--text);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    backdrop-filter: blur(6px);
 }
 
-/* Badges */
+/* ── Badges ──────────────────────────────────────────── */
 .badge-red {
     background: var(--danger);
     color: #fff;
-    padding: 5px 12px;
+    padding: 4px 12px;
     border-radius: 20px;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
-
 .badge-green {
     background: var(--accent);
     color: #fff;
-    padding: 5px 12px;
+    padding: 4px 12px;
     border-radius: 20px;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
-
 .badge-blue {
     background: var(--primary);
-    color: #000;
-    padding: 5px 12px;
+    color: #fff;
+    padding: 4px 12px;
     border-radius: 20px;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
-/* Controls */
+/* ── Controls (botones navegación) ──────────────────── */
 .controls {
     position: absolute;
     bottom: 28px;
@@ -366,53 +392,212 @@ tr:hover td {
 }
 
 .btn {
-    padding: 12px 28px;
-    border: 1px solid var(--border);
+    padding: 11px 28px;
+    border: 1.5px solid rgba(14, 165, 233, 0.30);
     border-radius: 50px;
-    background: rgba(0, 210, 255, 0.1);
-    color: var(--primary);
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--primary-dark);
     cursor: pointer;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-family: 'Outfit', sans-serif;
-    transition: all 0.3s;
+    transition: all 0.28s;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
 }
 
 .btn:hover:not(:disabled) {
     background: var(--primary);
-    color: #000;
-    box-shadow: 0 8px 20px rgba(0, 210, 255, 0.4);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
     transform: translateY(-2px);
 }
 
 .btn:disabled {
-    opacity: 0.3;
+    opacity: 0.30;
     cursor: not-allowed;
 }
 
-/* Slide counter */
+/* ── Slide counter ───────────────────────────────────── */
 .slide-counter {
     position: absolute;
     bottom: 35px;
     left: 50px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-muted);
     z-index: 20;
+    font-weight: 500;
 }
 
-/* Progress */
+/* ── Progress bar ────────────────────────────────────── */
 .progress-container {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 5px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(14, 165, 233, 0.08);
 }
 
 .progress-bar {
     height: 100%;
-    background: linear-gradient(to right, var(--primary), var(--accent));
+    background: linear-gradient(90deg, var(--primary), var(--accent));
     width: 0%;
     transition: width 0.5s ease;
 }
+
+/* ── AJUSTES SPECIFIC para slides originales ─────────── */
+
+/* Texto muted */
+[style*="color: var(--text-muted)"] { color: var(--text-muted) !important; }
+
+/* Cards del Slide de Mortalidad — fondo oscuro original → adaptado */
+[style*="background: #3b4e63"] {
+    background: rgba(14, 165, 233, 0.12) !important;
+    color: var(--text) !important;
+    border: 1px solid rgba(14, 165, 233, 0.30) !important;
+}
+
+/* Complicaciones table thead */
+[style*="background: linear-gradient(90deg, rgba(59, 78, 99"] {
+    background: linear-gradient(90deg, rgba(14,165,233,0.15), rgba(14,165,233,0.08)) !important;
+    color: var(--primary-dark) !important;
+}
+
+/* Fondo de las tarjetas de riesgo en Mortalidad */
+[style*="background: rgba(255,255,255,0.05)"] {
+    background: rgba(255, 255, 255, 0.72) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* Textos blancos forzados en slide 1 portada → se adaptan */
+#slide-1 h1 > div:first-child {
+    color: var(--primary-dark) !important;
+    -webkit-text-fill-color: initial !important;
+}
+#slide-1 h1 > div:last-child {
+    color: var(--accent) !important;
+    -webkit-text-fill-color: initial !important;
+}
+
+/* Fondo slide 1 — claro */
+#slide-1 {
+    background: linear-gradient(135deg,
+        rgba(224, 242, 254, 0.9) 0%,
+        rgba(240, 253, 244, 0.9) 100%) !important;
+}
+
+/* Orb glow slide 1 → más suave */
+#slide-1 > div:first-child {
+    background: radial-gradient(circle, rgba(14,165,233,0.12), transparent 70%) !important;
+}
+
+/* Flechas de mortalidad */
+[style*="color: #bdc3c7; font-size: 1.8rem"] {
+    color: var(--text-muted) !important;
+}
+
+/* Scatter boxes de mortalidad */
+[style*="background: rgba(255, 71, 87, 0.1); border-left: 3px solid var(--danger)"] {
+    background: rgba(239, 68, 68, 0.08) !important;
+}
+[style*="background: rgba(46, 204, 113, 0.1); border-left: 3px solid var(--accent)"] {
+    background: rgba(16, 185, 129, 0.08) !important;
+}
+
+/* Definición operacional (fondo rojo oscuro) */
+[style*="background: rgba(255, 71, 87, 0.08)"] {
+    background: rgba(239, 68, 68, 0.07) !important;
+    border-color: rgba(239, 68, 68, 0.40) !important;
+}
+
+/* Borde dashed del período de transmisión */
+[style*="background: rgba(255, 71, 87, 0.1); border: 1px dashed"] {
+    background: rgba(239, 68, 68, 0.08) !important;
+    color: var(--danger) !important;
+}
+
+/* Quote block de Las Américas */
+[style*="background: rgba(5, 15, 30, 0.98)"] {
+    background: rgba(14, 165, 233, 0.10) !important;
+    border-color: var(--primary) !important;
+    color: var(--text) !important;
+}
+[style*="background: rgba(5, 15, 30, 0.98)"] p {
+    color: var(--text) !important;
+}
+
+/* Paso 3 ruta crítica (fondo rojo) */
+[style*="background: rgba(255,71,87,0.07)"] {
+    background: rgba(239, 68, 68, 0.06) !important;
+    border-color: rgba(239, 68, 68, 0.30) !important;
+}
+
+/* Paso 5 ruta crítica (fondo naranja) */
+[style*="background: rgba(255,165,2,0.07)"] {
+    background: rgba(245, 158, 11, 0.07) !important;
+    border-color: rgba(245, 158, 11, 0.30) !important;
+}
+
+/* Mortalidad cercana 100% */
+[style*="background: var(--danger); color: white; padding: 10px; border-radius: 6px"] {
+    background: var(--danger) !important;
+    color: white !important;
+}
+
+/* Koplik block */
+[style*="background: rgba(255,255,255,0.03); padding: 12px 16px; border-radius: 12px; border-left: 3px solid var(--danger)"] {
+    background: rgba(239, 68, 68, 0.06) !important;
+    border-left-color: var(--danger) !important;
+}
+
+/* Fondo tabla complicaciones header alternado */
+[style*="background: rgba(0,0,0,0.2)"] {
+    background: rgba(14, 165, 233, 0.04) !important;
+}
+[style*="background: rgba(0,0,0,0.15)"] {
+    background: rgba(14, 165, 233, 0.04) !important;
+}
+[style*="background: rgba(0,0,0,0.4)"] {
+    background: rgba(14, 165, 233, 0.08) !important;
+    color: var(--text) !important;
+}
+
+/* 1 de cada 5 será hospitalizado */
+[style*="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%)"] {
+    /* Mantenemos el gradiente verde, solo ajustamos sombra */
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.30) !important;
+}
+
+/* Fiebre persistente box — se mantiene el gradiente rosa original */
+
+/* Diagnóstico — sarampión row highlight */
+[style*="background: rgba(0,168,255,0.12)"] {
+    background: rgba(14, 165, 233, 0.10) !important;
+    border-bottom-color: rgba(14, 165, 233, 0.25) !important;
+}
+
+/* Paso manejo (fondo oscuro con borde blanco) */
+[style*="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1)"] {
+    background: rgba(255, 255, 255, 0.70) !important;
+    border: 1px solid rgba(14, 165, 233, 0.18) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* Tabla vacunación PVU - encabezados */
+[style*="background: rgba(0, 210, 255, 0.15)"],
+[style*="background: rgba(0,210,255,0.15)"] {
+    background: rgba(14, 165, 233, 0.12) !important;
+}
+
+/* Texto de img captions */
+[style*="color: var(--text-muted); font-style: italic"] {
+    color: var(--text-light) !important;
+}
+
+/* Scrollbar para divs con overflow */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(14, 165, 233, 0.05); border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(14, 165, 233, 0.30); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(14, 165, 233, 0.55); }
